@@ -24,8 +24,11 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      - name: Install PNPM
+        run: npm install -g pnpm
+
       - name: Install Dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Install Expo CLI
         run: npm install -g expo-cli
