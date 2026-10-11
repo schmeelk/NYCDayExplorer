@@ -1,0 +1,6 @@
+import React from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import { Chip, useTheme } from 'react-native-paper';
+import type { Category } from '@/src/types/destination';
+export function CategoryFilter({ selected, onSelect, includeAll = false }: { selected: Category | 'All'; onSelect: (category: Category | 'All') => void; includeAll?: boolean }) { const theme = useTheme(); const options: Array<Category | 'All'> = includeAll ? ['All', 'Nature', 'Beach', 'History', 'Family', 'Small Town'] : ['Nature', 'Beach', 'History', 'Family', 'Small Town']; return <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.content}>{options.map((option) => { const selectedOption = option === selected; return <Chip key={option} selected={selectedOption} showSelectedCheck={false} onPress={() => onSelect(option)} icon={option === 'All' ? 'compass-outline' : undefined} style={[styles.chip, selectedOption && { backgroundColor: theme.colors.primaryContainer }]} textStyle={selectedOption ? { color: theme.colors.onPrimaryContainer } : undefined} accessibilityLabel={'Filter by ' + (option === 'All' ? 'any category' : option)}>{option === 'All' ? 'Any category' : option}</Chip>; })}</ScrollView>; }
+const styles = StyleSheet.create({ content: { gap: 8, paddingVertical: 4, paddingRight: 20 }, chip: { borderRadius: 18 } });

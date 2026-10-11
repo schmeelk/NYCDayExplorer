@@ -1,0 +1,24 @@
+kind = "mobile"
+previewPath = "/"
+title = "NYC Day Trip Explorer"
+description = "A local-first mobile app for discovering, planning, and saving single-day destinations from New York City. Includes search, category filters, trip recommendations, favorites persistence, and light/dark Material styling."
+version = "1.0.0"
+id = "artifacts/nyc-day-trip-explorer"
+router = "expo-domain"
+
+[[services]]
+name = "expo"
+ensurePreviewReachable = "/status"
+paths = [ "/" ]
+localPort = 22847
+
+[services.development]
+run = "pnpm --filter @workspace/nyc-day-trip-explorer run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/nyc-day-trip-explorer", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/nyc-day-trip-explorer", "run", "serve" ]
+
+[services.env]
+PORT = "22847"
+BASE_PATH = "/"
